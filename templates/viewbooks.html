@@ -1,0 +1,24 @@
+{%extends "layout.html"%}
+
+{%block title%}All the books{%endblock%}
+
+{%block body%}
+<table>
+<tr>
+    <th></th>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Type</th>
+    <th>Availability</th>
+</tr>
+{%for book in books%}
+<tr>
+    <th>{{loop.index}}</th>
+    <th>{{book.id}}</th>
+    <th>{{book.name}}</th>
+    <th>{{book.book_type}}</th>
+    <th>{{book.availability}}</th>
+</tr>
+{%endfor%}
+</table>
+{%endblock%}

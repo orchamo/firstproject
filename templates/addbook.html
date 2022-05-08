@@ -1,0 +1,29 @@
+{%extends "layout.html"%}
+
+{%block title%}Add a book{%endblock%}
+
+{%block body%}
+<form action = "#" method = "post" >
+    <p>Name:</p>
+    <p><input type = "text" name = "nm"/></p>
+    <p>Author:</p>
+    <p><input type = "text" name = "auth"/></p>
+    <p>Year:</p>
+    <p><input type = "number" name = "yr"/></p>
+    <p>Book Type:</p>
+    <p><select name = "typ">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+    </p>
+    <p><input type = "submit" value = "submit"/></p>
+</form> 
+{%endblock%}
+function checkInp()
+{
+var x=document.forms["myForm"]["typ"].value;
+if (1>x>3) // this is the code I need to change
+{
+alert("Must input a number between 1 - 3");
+return false;
+}

@@ -1,0 +1,40 @@
+{%extends "layout.html"%}
+
+{%block title%}Find a costumer{%endblock%}
+
+{%block body%}
+<form action = "#" method = "post" >
+    <p>Name:</p>
+    <p><input type = "text" name = "nm"/></p>
+    <p><input type = "submit" value = "submit"/></p>
+</form>
+
+<table>
+    <tr>
+        <th></th>
+        <th>ID</th>
+        <th>Name</th>
+        <th>City</th>
+        <th>Age</th>
+    </tr>
+    {%for costumer in costumers%}
+    <tr>
+        <th>{{loop.index}}</th>
+        <th>{{costumer.id}}</th>
+        <th>{{costumer.name}}</th>
+        <th>{{costumer.city}}</th>
+        <th>{{costumer.age}}</th>
+    </tr>
+    {%endfor%}
+    </table>
+    
+<!-- {%with messages = get_flashed_messages()%}
+    {%if messages%}
+        <ul class = flashes >
+            {%for message in messages%}
+            <li>{{messages}}</li>
+            {%endfor%}
+        </ul>
+    {%endif%}
+{%endwith%} -->
+{%endblock%}

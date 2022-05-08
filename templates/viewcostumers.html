@@ -1,0 +1,24 @@
+{%extends "layout.html"%}
+
+{%block title%}All the costumers{%endblock%}
+
+{%block body%} 
+<table>
+    <tr>
+        <th></th>
+        <th>ID</th>
+        <th>Name</th>
+        <th>City</th>
+        <th>Age</th>
+    </tr>
+    {%for costumer in costumers%}
+    <tr>
+        <th>{{loop.index}}</th>
+        <th>{{costumer.id}}</th>
+        <th>{{costumer.name}}</th>
+        <th>{{costumer.city}}</th>
+        <th>{{costumer.age}}</th>
+    </tr>
+    {%endfor%}
+    </table>
+{%endblock%}
