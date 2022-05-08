@@ -1,26 +1,3 @@
-# from app import db
-# from sqlalchemy import Column, Integer, String
-
-# class Costumers():
-#     __tablename__ = 'costumers'
-
-#     rowid = db.Column(Integer(), primary_key = True)
-#     name = db.Column(String(50), index = True, nullable = False )
-#     city = db.Column(String(50), nullable = False)
-#     age = db.Column(Integer(), nullable = False)
-#     # book_type = Column(Integer(), nullable = False)
-
-#     def __init__(self,name,city,age):
-#         self.name = name
-#         self.city = city
-#         self.age = age
-
-#     def addCostumer():
-#         pass
-
-#     def removeCostumer():
-#         pass
-
 from flask import request, flash
 from importlib_metadata import metadata
 from sqlalchemy import Column, Integer, String, create_engine,Table,MetaData,ForeignKey
@@ -38,12 +15,6 @@ class Costumers:
     }
 
     db_engine = None
-
-    # rowid = db.Column(Integer(), primary_key = True)
-    # name = db.Column(String(50), index = True , nullable = False)
-    # author = db.Column(String(50),nullable = False)
-    # year = db.Column(Integer(),nullable = False)
-    # book_type = db.Column(Integer(), nullable = False)
 
     def __init__(self,name='', city='',age=''):
         engine_url = self.DB_ENGINE[SQLITE]
@@ -80,14 +51,10 @@ class Costumers:
                 print(e)
 
     def addCostumer(self, name, city, age ):
-        # = request.form["nm"]
-        # = request.form["auth"]
-        # = request.form["yr"]
-        # = request.form["typ"]
+       
         query = f"INSERT INTO {COSTUMERS}(name,city,age) VALUES ('{name}','{city}',{age})"
         self.execute_query(query)
-        # db.session.add(book)
-        # db.session.commit()
+        
 
     def removeCostumer(self, name):
             query = f"DELETE FROM {COSTUMERS} WHERE name = '{name}'"
@@ -124,8 +91,4 @@ class Costumers:
                 for row in result:
                     res.append( row)
                 result.close()
-        # print("\n")
         return res
-# Costumers().create_db_table()
-
-# print(Costumers().execute_query(f"SELECT * FROM costumers"))

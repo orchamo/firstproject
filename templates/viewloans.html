@@ -2,4 +2,23 @@
 
 {%block title%}All loans{%endblock%}
 
-{%block body%} {%endblock%}
+{%block body%} 
+<table>
+    <tr>
+        <th></th>
+        <th>bookID</th>
+        <th>costumerID</th>
+        <th>LoanDate</th>
+        <th>ReturnDate</th>
+    </tr>
+    {%for loan in loans%}
+    <tr>
+        <th>{{loop.index}}</th>
+        <th>{{loan.bookId}}</th>
+        <th>{{loan.costumerId}}</th>
+        <th>{{loan.loanDate}}</th>
+        <th>{{loan.returnDate}}</th>
+    </tr>
+    {%endfor%}
+    </table>
+{%endblock%}

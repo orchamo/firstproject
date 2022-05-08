@@ -9,6 +9,7 @@ import loans
 #create a Flask instance
 app = Flask(__name__)
 app.secret_key= "banana"
+
 #add database
 
 app.config['SQLAlCHEMY_DATABASE_URI'] = 'sqlite:///costumers.db'
@@ -19,14 +20,25 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 #initialize db
 db = SQLAlchemy(app)
 
+books.BooksDatabase().create_db_table()
+costumers.Costumers().create_db_table()
+loans.Loans().create_db_table()
+
+#home page and bout
 
 @app.route('/')
 def hello():
     return render_template('home.html')
  
+#book class related pages
+
+#view all the books
+
 @app.route('/viewbooks')
 def viewbooks():
     return render_template('viewbooks.html',books = books.BooksDatabase().print_all_data())
+
+#add a book to the table
 
 @app.route('/addbook', methods = ["POST", "GET"])
 def addbook():
@@ -36,6 +48,7 @@ def addbook():
     else:
         return render_template('addbook.html')
 
+#remove a book from the table
 
 @app.route('/removebook', methods = ["GET","POST"])
 def removebook():
@@ -45,9 +58,17 @@ def removebook():
     else:
         return render_template("removebook.html")
 
+
+
+#costumer class related pages---
+
+#view all the costumers
+
 @app.route('/viewcostumers')
 def viewcostumers():
     return render_template('viewcostumers.html',costumers = costumers.Costumers().print_all_data())
+
+# add a costumer to the table
 
 @app.route('/addcostumer', methods = ["GET","POST"])
 def addcostumer():
@@ -57,6 +78,8 @@ def addcostumer():
     else:
         return render_template('addcostumer.html')
 
+#find a costumer by name
+
 @app.route('/findcostumer',methods = ["GET","POST"])
 def findcostumer():
     if request.method == "POST":
@@ -64,17 +87,27 @@ def findcostumer():
     else:
         return render_template('findcostumer.html')
 
+#remove a costumer from the table
+
 @app.route('/removecostumer',methods = ["GET","POST"])
 def removecostumer():
     if request.method == "POST":
         costumers.Costumers().removeCostumer(request.form["nm"])
-        return(redirect(url_for("removecostumer")))
+        return(redirect(url_for("viewcostumers")))
     else:
         return render_template("removecostumer.html")
 
+
+
+#loans related pages ---
+
+#view all loans
+
 @app.route('/viewloans')
 def viewloans():
-    return 'Hello, World!'
+    return render_template('viewloans.html',loans = loans.Loans().print_all_data())
+
+#add a loan to the table
 
 @app.route('/loanbook', methods = ["GET","POST"])
 def loanbook():
@@ -90,6 +123,7 @@ def loanbook():
         return render_template("loanbook.html")
 
 
+#return a loan to the table
 
 @app.route('/returnbook')
 def returnbook():
@@ -102,37 +136,3 @@ def viewlateloans():
 if __name__ == '__main__':
     db.create_all()
     app.run(debug = True, port = 9000)
-
-
-
-
-
-
-
-
-
-# def main():
-
-
-#     print("a - add new book")
-#     print("b - add new costumer")
-#     print("c - loan a book")
-#     print("d - return a book")
-#     print("e - display all books")
-#     print("f - display all customers")
-#     print("g - display all loans")
-#     print("h - display all late loans")
-#     print("i - find book by name")
-#     print("i - find customer by name")
-#     print("i - remove book")
-#     print("i - remove customer")
-
-
-
-
-
-
-
-
-# if __name__=="__main__":
-#     main()

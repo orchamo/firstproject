@@ -56,11 +56,7 @@ class BooksDatabase:
     def addBook(self, name, author, year,book_type):
         query = f"INSERT INTO {BOOKS}(name, author,year,book_type, availability) VALUES ('{name}','{author}',{year},{book_type},'available')"
         self.execute_query(query)
-
-    def updateBookStatus(self, name ,availability):
-        query = f"UPDATE {BOOKS} SET availability = {availability} WHERE name = {name}"
-        self.execute_query(query)
-        
+  
 
     def removeBook(self, name):
             query = f"DELETE FROM {BOOKS} WHERE name = '{name}'"
@@ -99,3 +95,7 @@ class BooksDatabase:
             ress = str(ress).strip('(').strip(')').strip(',')
             print (ress)
             return ress
+
+    def updateBookStatus(self, name ,availability):
+        query = f"UPDATE {BOOKS} SET availability = {availability} WHERE name = {name}"
+        self.execute_query(query)

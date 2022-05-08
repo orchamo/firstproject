@@ -54,7 +54,6 @@ class Loans:
                 print(e)
 
     def loan(self, bookId, costumerId, loanDate, returnDate ):
-        # query = f"SELECT {books.BOOKS[id], costumers.COSTUMERS[id]} FROM {books.BOOKS}, {costumers.COSTUMERS} WHERE {books.BOOKS[availability]} = 'Yes' "
         query = f"INSERT INTO {LOANS}(bookId, costumerId, loanDate, returnDate) VALUES ('{bookId}','{costumerId}',{loanDate},{returnDate})"
         self.execute_query(query)
 
